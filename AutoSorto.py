@@ -28,8 +28,10 @@ print("Starting...")
 
 for index in range(len(files)):
     file = files[index]
-    print("Processing", file)
     filePath = folder + "/" + file
+    if(os.path.isdir(filePath)):
+        continue
+    print("Processing", file)
     fileDate = os.path.getmtime(filePath)
     fileYear = datetime.datetime.utcfromtimestamp(fileDate).strftime("%Y")
     fileMonth = datetime.datetime.utcfromtimestamp(fileDate).strftime("%m")
@@ -39,5 +41,3 @@ for index in range(len(files)):
     os.replace(filePath, newPath + "/" + file)
 
 print("Done")
-
-x = input("")
