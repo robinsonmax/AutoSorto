@@ -26,12 +26,13 @@ if(not(confirmation.lower() == "y" or confirmation.lower() == "yes")):
 
 print("Starting...")
 
-for index in range(len(files)):
+numberOfFiles = len(files)
+for index in range(numberOfFiles):
     file = files[index]
     filePath = folder + "/" + file
     if(os.path.isdir(filePath)):
         continue
-    print("Processing", file)
+    print("Processing", index, "/", numberOfFiles, file)
     fileDate = os.path.getmtime(filePath)
     fileYear = datetime.datetime.utcfromtimestamp(fileDate).strftime("%Y")
     fileMonth = datetime.datetime.utcfromtimestamp(fileDate).strftime("%m")
