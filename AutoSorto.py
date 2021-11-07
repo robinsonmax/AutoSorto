@@ -30,7 +30,7 @@ numberOfFiles = len(files)
 for index in range(numberOfFiles):
     file = files[index]
     filePath = folder + "/" + file
-    if(os.path.isdir(filePath)):
+    if(os.path.isdir(filePath) or filePath.split(".")[-1].lower() == "json"):
         continue
     print("Processing", index, "/", numberOfFiles, file)
     fileDate = os.path.getmtime(filePath)
