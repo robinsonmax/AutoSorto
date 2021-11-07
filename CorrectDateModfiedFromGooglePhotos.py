@@ -13,7 +13,21 @@ def correctModifiedTime(file):
         date = datetime.datetime.fromtimestamp(int(timeStamp))
     except:
         print("Error getting time stamp from JSON for file:", file)
-        return False
+
+        fileName = file.split("/")[-1]
+        if(fileName.split("_")[0] == "Screenshot"):
+            print("Getting date from name of screenshot")
+            rawDate = fileName.split("_")[1]
+            rawTime = fileName.split("_")[2]
+            y = int(rawDate[0:4])
+            m = int(rawDate[4:6])
+            d = int(rawDate[6:8])
+            H = int(rawTime[0:2])
+            M = int(rawTime[2:4])
+            S = int(rawTime[4:6])
+            date = datetime.datetime(y, m, d, H, M, S)
+        else:
+            return False
 
     try:
         modTime = time.mktime(date.timetuple())
